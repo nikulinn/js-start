@@ -90,12 +90,58 @@ let i = 0;
 //         break;
 // }
 
-7. Перепишіть функцію, щоб вона робила теж саме, але без if і в один рядок.
-function checkAge(age) {
-    if (age > 18) {
-        return true;
-    } else {
-        return confirm('Батьки дозволили?');
-    }
-}
+// 7. Перепишіть функцію, щоб вона робила теж саме, але без if і в один рядок.
+// function checkAge(age) {
+//     if (age > 18) {
+//         return true;
+//     } else {
+//         return confirm('Батьки дозволили?');
+//     }
+// }
+//
+// function checkAge(age) {
+//     return (age > 18) ? true : confirm('Батьки дозволили?');
+// }
+//
+// function checkAge(age) {
+//     return (age > 18) || confirm('Батьки дозволили?');
+// }
 
+// 8. Напишіть функцію min(a, b), яка повертає менше з двох чисел a та b.?
+// function min(a,b) {
+//     if (a < b) {
+//         return a;
+//     }
+//     return b;
+// }
+// function min (a,b) {
+//     return a < b ? a : b;
+// }
+
+// let min1 = min(2, 5)
+// console.log(min1)
+// let min2 = min(3, -1)
+// console.log(min2)
+// let min3 = min(1, 1)
+// console.log(min3)
+
+// 9. Напишіть функцію pow(x, n), яка повертає число x, піднесене до степеня n.
+// Інакше кажучи, множить число x саме на себе n разів і повертає результат.
+
+// function pow(x,n) {
+//     let result = x
+
+//     for(let i=1; i<n; i++ ) {
+//         result *= x
+//     }
+//     console.log(result)
+//     return result
+// }
+// let n  = prompt("Введіть N", '');
+// let x  = prompt("Введіть X", '');
+
+// if (n < 1) {
+// alert(`Степінь ${n} не підтримується, використовуйте натуральне число`);
+// } else {
+// alert( pow(x, n) );
+// }
