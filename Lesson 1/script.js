@@ -145,3 +145,37 @@ let i = 0;
 // } else {
 // alert( pow(x, n) );
 // }
+
+// 10. Замініть Функціональні Вирази на стрілкові функції у коді нижче:
+// function ask(question, yes, no) {
+//   if (confirm(question)) yes();
+//   else no();
+// }
+
+// ask(
+//   "Ви згодні?",
+//   function() { alert("Ви погодились."); },
+//   function() { alert("Ви скасували виконання."); }
+// );
+
+// function ask(question, yes, no) {
+//   if (confirm(question)) yes();
+//   else no();
+// }
+
+// ask(
+//     "Ви згодні?",
+//     () => alert("Ви погодились."),
+//     () => alert("Ви скасували виконання.")
+//   );
+
+function hello(name) {
+    let phrase = 'hello, ${name}!';
+
+    say(phrase)
+}
+
+function say(phrase) {
+    alert('** ${phrase} **');
+}
+hello('oleg');
