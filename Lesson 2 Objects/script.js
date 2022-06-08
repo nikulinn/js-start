@@ -1,99 +1,38 @@
-// 1. 
-// Створіть порожній об’єкт user.
-// Додайте властивість name зі значенням Іван.
-// Додайте властивість surname зі значенням Сміт.
-// Змініть значення name на Петро.
-// Видаліть властивість name з об’єкта.
+// 1.Чи можливо створити функції A та B, щоб new A() == new B()?
+let obj = {};
+    function A() {
+        return obj;
+    }
+    function B() {
+        return obj;
+    }
 
-// let user = {};
-// user.name = 'Ivan';
-// user.surname = 'Smit';
-// user.name = 'Petr';
-// delete user.name;
+let a = new A;
+let b = new B;
 
-// 2. Напишіть функцію isEmpty(obj), яка повертає true, якщо об’єкт не має властивості, інакше false.
-// Має так працювати:
-    // let schedule = {};
-    // alert( isEmpty(schedule) ); // true
-    // schedule["8:30"] = "Вставай";
-    // alert( isEmpty(schedule) ); // false
+// alert( a == b ); // true
 
+// 1.Створіть функцію-конструктор Calculator, який створює об’єкти з трьома методами:
+// read() запитує два значення за допомогою prompt і запам’ятовує їх у властивостях об’єкта.
+// sum() повертає суму цих властивостей.
+// mul() повертає результат множення даних властивостей.
 
-// let schedule = {};
-// schedule["8:30"] = "Вставай";
-// schedule["9:30"] = "Працюй";
-// schedule["13:30"] = "Обідай";
+function Calculator() {
 
-// let obj = {};
-// function isEmpty(obj) {
-//     let key = obj.key
-//     // for (let key in obj) {
-//         if (key in obj == undefined) {
-//             return false;
-//         } else {
-//             return true;
-//         }
-//     // }
-// }
-
-// isEmpty(obj);
-// in example
-// function isEmpty(obj) {
-//     for (let key in obj) {
-//       // якщо цикл розпочався, властивість є
-//       return false;
-//     }
-//     return true;
-//   }
-
-// 3. У нас є об’єкт для зберігання заробітної плати нашої команди:
-// let salaries = {
-//   John: 100,
-//   Ann: 160,
-//   Pete: 130
-// }
-// let salaries2 = {}
-// Напишіть код для підсумовування всіх зарплат і збережіть у змінній sum. У наведеному вище прикладі має бути 390.
-// Якщо об’єкт salaries порожній, то результат має бути 0.
-
-// function salariesSum(obj) {
-//     let isEmpty;
-//     let sum = 0;
-
-//     for (key in obj) {
-//         isEmpty = false
-//         sum += obj[key]
-//     }
-//     console.log('sum ', sum)
-// }
-
-// salariesSum(salaries);
-// salariesSum(salaries2);
-
-// 4. Створіть функцію multiplyNumeric(obj), яка примножує всі числові властивості об’єкта obj на 2.
-// до виклику функції
-let menu = {
-  width: 200,
-  height: 300,
-  title: "Моє меню"
-};
-
-function multiplyNumeric(obj) {
-    for (let key in obj) {
-        if ((typeof obj[key]) == 'number') {
-            obj[key] = obj[key] * 2;
-            console.log(obj[key]);
-        }
-    } 
+    this.read = function() {
+        this.a = +prompt('write a', 15)
+        this.b = +prompt('write a', 15)
+    },
+    this.sum =function () {
+     return this.a + this.b
+    },
+    this.mul =function () {
+        return this.a * this.b
+    }
 }
 
-// example
-// function multiplyNumeric(obj) {
-//     for (let key in obj) {
-//       if (typeof obj[key] == 'number') {
-//         obj[key] *= 2;
-//       }
-//     }
-//   }
+let calculator = new Calculator();
+calculator.read();
 
-multiplyNumeric(menu);
+alert( "Sum=" + calculator.sum() );
+alert( "Mul=" + calculator.mul() );
