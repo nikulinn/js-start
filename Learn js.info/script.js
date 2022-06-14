@@ -11,4 +11,36 @@ function A() { return emptyObj }
 function B() { return emptyObj }
 let a = new A;
 let b = new B;
-console.log( a == b );
+console.log('First exercise: ', a == b );
+
+// 2. Створити Калькулятор за допомогою конструктора
+
+// Створіть функцію-конструктор Calculator, який створює об’єкти з трьома методами:
+// read() запитує два значення за допомогою prompt і запам’ятовує їх у властивостях об’єкта.
+// sum() повертає суму цих властивостей.
+// mul() повертає результат множення даних властивостей.
+    // Наприклад:
+    // let calculator = new Calculator();
+    // calculator.read();
+    //
+    // alert( "Sum=" + calculator.sum() );
+    // alert( "Mul=" + calculator.mul() );
+
+function Calculator () {
+    this.read = function(){
+        this.a = +prompt('Write a', 10);
+        this.b = +prompt('Write b', 10)
+    },
+    this.sum = function() {
+        return this.a + this.b;
+    }
+    this.mul = function() {
+        return this.a * this.b;
+    }
+}
+
+let calculator = new Calculator();
+calculator.read();
+
+alert( "Sum=" + calculator.sum() );
+alert( "Mul=" + calculator.mul() );
