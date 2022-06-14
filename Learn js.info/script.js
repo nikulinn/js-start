@@ -44,3 +44,28 @@ calculator.read();
 
 alert( "Sum=" + calculator.sum() );
 alert( "Mul=" + calculator.mul() );
+
+// 3. Створіть функцію-конструктор Accumulator(startingValue).
+    // Об’єкт, який він створює повинен:
+    // Зберігати “поточне значення” у властивості value. Початкове значення має значення аргументу конструктора startingValue.
+    // Метод read() повинен використовувати prompt для зчитування нового числа та додавати його до value.
+    // Іншими словами, властивість value – це сума всіх введенних користувачем значень разом із початковим значенням startingValue.
+
+    // let accumulator = new Accumulator(1); // початкове значення 1
+    // accumulator.read(); // додає введене користувачем значення
+    // accumulator.read(); // додає введене користувачем значення
+    // alert(accumulator.value); // показує суму цих значень
+
+Accumulator = function(startingValue) {
+    this.value = startingValue;
+
+    this.read = function() {
+        this.value += +prompt('Write value', 14);
+    }
+}
+
+
+let accumulator = new Accumulator(2);
+accumulator.read();
+accumulator.read();
+alert(accumulator.value);
