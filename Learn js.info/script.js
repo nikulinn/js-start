@@ -12,13 +12,32 @@ function sum() {
 // Отримане значення потрібно повернути як число.
 // Відвідувач також може зупинити процес, ввівши порожній рядок або натиснувши “CANCEL”. У цьому випадку функція повинна повернути null.
 
+// function readNumber() {
+//     let number = prompt("Put a number");
+//     if (number == null || number == '') {
+//         console.log('Null');
+//     } else {
+//         console.log(+number);
+//     }
+// }
+
+readNumber()
+
 function readNumber() {
-    let number = prompt("Put a number");
-    if (number == null || number == '') {
-        console.log('Null');
+    let number
+    do {
+        number = prompt("Put a number"); 
+    } while (!isFinite(number));
+
+    if (number == null || number == '') { 
+        console.log(null);
+        return null
     } else {
         console.log(+number);
+        return +number
     }
+
+    
 }
 
 readNumber()
