@@ -42,8 +42,42 @@ function sumInput() {
     for (let number of arr) {
         sum += number;
     }
-    console.log(sum)
-    return (sum)
+    console.log(sum);
+    return (sum);
 }
 
-sumInput();
+// sumInput();
+
+// Second Part
+// Напишіть функцію camelize(str), яка перетворює такі рядки “my-short-string” в “myShortString”.
+// Тобто дефіси видаляються, а всі слова після них починаються з великої літери.
+//
+// camelize("background-color") == 'backgroundColor';
+// camelize("list-style-image") == 'listStyleImage';
+// camelize("-webkit-transition") == 'WebkitTransition';
+// P.S. Підказка: використовуйте split, щоб розбити рядок на масив символів, потім переробіть все як потрібно та методом join зʼєднайте елементи в рядок.
+
+function camelize(str) {
+    let arr = str.split('-');
+    let newString = arr.map((item, index) => index == 0 ? item : item[0].toUpperCase() + item.slice(1));
+    let capitalizedStr = newString.join('');
+    console.log(capitalizedStr)
+    return capitalizedStr
+}
+
+camelize("background-color");
+
+// Напишіть функцію filterRange(arr, a, b), яка приймає масив arr, шукає в ньому елементи більші-рівні a та менші-рівні b
+// і віддає масив цих елементів.
+// Функція повинна повертати новий масив і не змінювати вихідний.
+
+function filterRange(arr, a, b) {
+    return arr.filter(item => (a <= item && item <= b));
+}
+
+
+let arr = [5, 3, 8, 1];
+let filtered = filterRange(arr, 1, 5);
+
+console.log('filtered', filtered );
+console.log('arr', arr );
