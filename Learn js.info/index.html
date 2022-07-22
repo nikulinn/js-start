@@ -6,6 +6,43 @@
     <script src="script.js"></script>
 </head>
 <body>
-<h1>Array<a href="">Link</a></h1>
+<style>
+    .box {
+        width: 50%
+    }
+    .main {
+        display: flex;
+        max-width: 50%;
+        margin: 0 auto;
+    }
+    .submit-form {
+        display: flex;
+        flex-direction: column;
+    }
+    .form__field {
+        margin-bottom: 8px;
+        max-width: 150px;
+    }
+    .user__list {
+        display: flex;
+    }
+</style>
+<main class="main">
+    <div class="box box1">
+        <ul>
+            <li class="user__list"><p>First Name / Last Name</p><div><button class="">Edit</button><button class="">Remove</button></div></li>
+            <li class="user__list"><p>First Name / Last Name</p><div><button class="">Edit</button><button class="">Remove</button></div></li>
+        </ul>
+    </div>
+    <div class="box box2">
+        <form class="submit-form" data-regitration-form>
+            <input class="form__field" type="text" placeholder="First Name" value=""/>
+            <input class="form__field" type="text" placeholder="Last Name" value=""/>
+            <input class="form__field" type="text" placeholder="Email" value=""/>
+            <input class="form__field" type="text" placeholder="Avatar" value=""/>
+            <button class="form__field" type="submit" class="">Submit</button>
+        </form>
+    </div>
+</main>
 </body>
 </html>
