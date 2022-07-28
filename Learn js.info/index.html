@@ -30,17 +30,16 @@
 <main class="main">
     <div class="box box1">
         <ul>
-            <li class="user__list"><p>First Name / Last Name</p><div><button class="">Edit</button><button class="">Remove</button></div></li>
-            <li class="user__list"><p>First Name / Last Name</p><div><button class="">Edit</button><button class="">Remove</button></div></li>
-        </ul>
+            <li class="user__list" data-user-list><p>First Name / Last Name</p><div><button class="">Edit</button><button class="">Remove</button></div></li>
+         </ul>
     </div>
     <div class="box box2">
-        <form class="submit-form" data-regitration-form>
-            <input class="form__field" type="text" placeholder="First Name" value=""/>
-            <input class="form__field" type="text" placeholder="Last Name" value=""/>
-            <input class="form__field" type="text" placeholder="Email" value=""/>
-            <input class="form__field" type="text" placeholder="Avatar" value=""/>
-            <button class="form__field" type="submit" class="">Submit</button>
+        <form class="submit-form" data-registration-form>
+            <input class="form__field" type="text" placeholder="First Name" value="" required data-registration-name>
+            <input class="form__field" type="text" placeholder="Last Name" value="" required data-registration-surname>
+            <input class="form__field" type="text" placeholder="Email" value="" required data-registration-email>
+            <input class="form__field" type="text" placeholder="Avatar" value="" required data-registration-avatar>
+            <button class="form__field" type="button" class="" data-registration-button>Submit</button>
         </form>
     </div>
 </main>
