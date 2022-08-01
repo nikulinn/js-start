@@ -9,7 +9,7 @@
         let userName = document.querySelector('[data-registration-name]');
         let userLastName = document.querySelector('[data-registration-surname]');
         let userEmail = document.querySelector('[data-registration-email]');
-
+        let users =[]
         let user = {
             id: userId++,
             name: userName.value,
@@ -17,41 +17,53 @@
             email: userEmail.value
         }
         users.push(user);
+        // Clear fields in form
         registrationForm.reset();
-        console.warn('added', { users });
+        console.warn(users)
+        // Save user to local storage
+        saveLocalStorage('Users', users)
+        // Add user to user list
+        new User(user.id, user.name, user.lastName, user.email).addList();
+        deleteUser(user.id);
 
-        localStorage.setItem('Users', JSON.stringify(users));
         // clearData();
-        loadData();
+        // loadData();
     }
+
+
+    function saveLocalStorage(key, value) {
+        localStorage.setItem(key, JSON.stringify(value));
+    }
+
 
     function loadData(){
         userData = window.localStorage.getItem('Users');
-        // console.log(userData);
-        addtoPage(userData);
+        reloadPage(userData);
     }
 
-    function clearData() {
-        let userList = document.querySelector('.user__list');
-        userList.remove();
-    }
-
-    function addtoPage(data) {
-        // const userList  = document.createElement('ul')
-        const userListWrap = document.querySelector('[data-user-list-wrapper]');
-        // console.log(userList.length);
-        // userListWrap.append(userList);
-        // userList.className = 'user__list';
-
-        userData = JSON.parse(data);
-        userData.forEach((el)=>{
-            console.log(el);
-            const userListItem  = document.createElement('li')
-            userListItem.innerHTML = '<p class="user-list-text">' + el.name + '/' + el.lastName + '</p><button class="btn">Edit</button><button class="btn" data-remove>Remove</button>';
-            userListWrap.append(userListItem);
-            userListItem.className = 'user__list-item';
+    function deleteUser(id) {
+        let deleteUserButton = document.querySelector('[data-remove]');
+        deleteUserButton.addEventListener('click', function() {
+            new User(user.id, user.name, user.lastName, user.email).addList();
+            console.log(id)
         });
+    }
 
+    // function clearData() {
+    //     let userList = document.querySelector('.user__list');
+    //     userList.remove();
+    // }
+
+    function reloadPage(data){
+        if (data != null) {
+            userData = JSON.parse(data);
+            userData.forEach((el)=>{
+                let userItem = new User(el.id, el.name, el.lastName, el.email);
+                userItem.addList();
+                deleteUser(el.id);
+            });
+
+        }
     }
 
     function removeItem() {
@@ -64,21 +76,26 @@
 
     document.addEventListener('DOMContentLoaded', ()=>{
         let submitButton = document.querySelector('[data-registration-button]');
-        submitButton.addEventListener('click', addUser);
 
+
+        submitButton.addEventListener('click', addUser);
         loadData()
     });
 
 
-// class User {
-//     constructor(id, name, lastName, email) {
-//         this.id = userId;
-//         this.name = userName.value;
-//         this.lastName = lastName.value;
-//         this.email = userEmail.value;
-//     }
-//
-//     addList() {
-//
-//     }
-// };
+class User {
+    constructor(id, name, lastName, email) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+    };
+
+    addList() {
+        const userListWrap = document.querySelector('[data-user-list-wrapper]');
+        const userListItem = document.createElement('li')
+        userListItem.innerHTML = '<p class="user-list-text">' + this.name + '/' + this.lastName + '</p><button class="btn">Edit</button><button class="btn" data-remove="' + this.id + '">Remove</button>';
+        userListWrap.append(userListItem);
+        userListItem.className = 'user__list-item';
+    }
+}
