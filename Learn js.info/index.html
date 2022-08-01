@@ -12,26 +12,48 @@
     }
     .main {
         display: flex;
-        max-width: 50%;
+        max-width: 700px;
         margin: 0 auto;
     }
     .submit-form {
         display: flex;
         flex-direction: column;
+        align-items: center;
     }
     .form__field {
         margin-bottom: 8px;
         max-width: 150px;
     }
-    .user__list {
+
+    .user-list-text {
+        white-space: nowrap;
+        flex-grow: 2;
+    }
+
+    .user__list{
+        padding-left: 0;
+    }
+    .user__list-item {
         display: flex;
+        width: 400px;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .btn {
+        padding: 8px 32px;
+        background-color: #222;
+        color: #fff;
+        border: 0;
+        margin-left: 16px;
+    }
+    .btn-full {
+        width: 100%;
+        margin-left: 0;
     }
 </style>
 <main class="main">
     <div class="box box1">
-        <ul>
-            <li class="user__list" data-user-list><p>First Name / Last Name</p><div><button class="">Edit</button><button class="">Remove</button></div></li>
-         </ul>
+        <ul class="user__list" data-user-list-wrapper></ul>
     </div>
     <div class="box box2">
         <form class="submit-form" data-registration-form>
@@ -39,7 +61,7 @@
             <input class="form__field" type="text" placeholder="Last Name" value="" required data-registration-surname>
             <input class="form__field" type="text" placeholder="Email" value="" required data-registration-email>
             <input class="form__field" type="text" placeholder="Avatar" value="" required data-registration-avatar>
-            <button class="form__field" type="button" class="" data-registration-button>Submit</button>
+            <button class="form__field btn btn-full" type="button" data-registration-button>Submit</button>
         </form>
     </div>
 </main>
