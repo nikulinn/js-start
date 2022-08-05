@@ -22,38 +22,36 @@ let users = [
 ];
 
 let usersCount = users.length
-console.log('usersCount:', usersCount)
 
-function whileFunc() {
+function whileFunc(users) {
     let i = 0
+    let usersCount = users.length
     while (i < usersCount) {
-        let admin = users[i].admin
-        console.log('before:', admin)
-        if (admin == false) {
-            admin = true;
+        let adminValue = users[i].admin;
+        if (!adminValue) {
+            users[i].admin = true;
         }
-        console.log('after:', admin);
         usersCount--;
-        console.log('usersCount:', usersCount)
     }
 }
-// whileFunc();
+whileFunc(users);
 
 // Завдання 2
 // Маючи той самий масив зробити таку ж дію використовуючи конструкцію for
 
-function forFunc() {
-    for (let j = 0 ; j <= usersCount; usersCount--){
-        let admin = users[j].admin
-        console.log('before:', admin)
-        if (admin == false) {
-            admin = true;
+function forFunc(users) {
+    let usersCount = users.length
+
+    for (let i = 0 ; i < users.length; i++){
+        let adminValue = users[i].admin;
+        if (!adminValue) {
+            users[i].admin = true;
         }
-        console.log('after:', admin);
-        console.log('usersCount:', usersCount)
+        usersCount--;
     }
 }
-forFunc();
+
+forFunc(users);
 
 
 
