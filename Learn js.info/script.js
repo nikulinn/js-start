@@ -21,14 +21,11 @@ let users = [
     { name: 'Test1', admin: true }
 ];
 
-let usersCount = users.length
-
 function whileFunc(users) {
     let i = 0
     let usersCount = users.length
     while (i < usersCount) {
-        let adminValue = users[i].admin;
-        if (!adminValue) {
+        if (!users[i].admin) {
             users[i].admin = true;
         }
         usersCount--;
@@ -40,14 +37,10 @@ whileFunc(users);
 // Маючи той самий масив зробити таку ж дію використовуючи конструкцію for
 
 function forFunc(users) {
-    let usersCount = users.length
-
     for (let i = 0 ; i < users.length; i++){
-        let adminValue = users[i].admin;
-        if (!adminValue) {
+        if (!users[i].admin) {
             users[i].admin = true;
         }
-        usersCount--;
     }
 }
 
