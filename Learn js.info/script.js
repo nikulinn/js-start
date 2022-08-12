@@ -20,53 +20,60 @@ class Button {
         this.tablet = options.tablet
     };
 
-    get type() {
+    get getType() {
         return this.type;
     }
 
-    get name() {
+    get getName() {
         return this.name;
     }
 
-    get common() {
+    get getCommon() {
         return this.common;
     }
 
-    get mobile() {
+    get getMobile() {
         return this.mobile;
     }
 
-    get tablet() {
+    get getTablet() {
         return this.tablet;
     }
 
-    set type(newType) {
+    set setType(newType) {
         this.type = newType;
     }
 
-    set name(newName) {
+    set setName(newName) {
         this.name = newName;
     }
 
-    set common(newCommon) {
+    set setCommon(newCommon) {
         this.common = newCommon;
     }
 
-    set mobile(newMobile) {
+    set setMobile(newMobile) {
         this.mobile = newMobile;
     }
 
-    set tablet(newTablet) {
+    set setTablet(newTablet) {
         this.tablet = newTablet;
     }
 }
-for (let i of buttons) {
-    const btn = new Button(i)
+
+class RegularButton extends Button {}
+class ProductButton extends Button {}
+
+let productButons;
+let regularButons;
+
+for (let button of buttons) {
+    if (button.type === 'product') {
+        productButons = new ProductButton(button);
+    } else {
+        regularButons = new RegularButton(button);
+    }
 }
-
-
-class RegularButton extends Button {};
-class ProductButton extends Button {};
 
 // const Tst = new RegularButton(buttons)
 
