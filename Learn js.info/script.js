@@ -23,12 +23,11 @@ let users = [
 
 function whileFunc(users) {
     let i = 0
-    let usersCount = users.length
-    while (i < usersCount) {
+    while (i < users.length) {
         if (!users[i].admin) {
             users[i].admin = true;
         }
-        usersCount--;
+        i++
     }
 }
 whileFunc(users);
