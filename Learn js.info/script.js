@@ -19,43 +19,43 @@ class Button {
         this.tablet = options.tablet
     };
 
-    get getType() {
+    get #type() {
         return this.type;
     }
 
-    get getName() {
+    get #name() {
         return this.name;
     }
 
-    get getCommon() {
+    get #common() {
         return this.common;
     }
 
-    get getMobile() {
+    get #mobile() {
         return this.mobile;
     }
 
-    get getTablet() {
+    get #tablet() {
         return this.tablet;
     }
 
-    set setType(newType) {
+    set #type(newType) {
         this.type = newType;
     }
 
-    set setName(newName) {
+    set #name(newName) {
         this.name = newName;
     }
 
-    set setCommon(newCommon) {
+    set #common(newCommon) {
         this.common = newCommon;
     }
 
-    set setMobile(newMobile) {
+    set #mobile(newMobile) {
         this.mobile = newMobile;
     }
 
-    set setTablet(newTablet) {
+    set #tablet(newTablet) {
         this.tablet = newTablet;
     }
 }
