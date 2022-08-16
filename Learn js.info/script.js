@@ -22,10 +22,7 @@ function updateTimer(hours, minutes) {
 // Завдання 3
 // В даній функції потрібно вивести дані таймера в такому форматі "Monday, 18:36:20 is finished false"
 
-function getTimerInfo() {
-    return `${timer.day}, ${timer.hours}:${timer.minutes}:${timer.seconds} is finished ${timer.finished}`;
-}
-getTimerInfo()
+const getTimerInfo = () => `${timer.day}, ${timer.hours}:${timer.minutes}:${timer.seconds} is finished ${timer.finished}`;
 
 // Завдання 4
 // Створити об'єкт user з полем name = 'Oleg' в якому не можливо буде змінити поле name
@@ -49,7 +46,7 @@ const dj = {
     lastName: 'van Buuren'
 }
 
-const user = {
+const user2 = {
     firstName: 'Armin',
     lastName: 'van Buuren',
     fullName: function () {
@@ -63,7 +60,3 @@ const user = {
 // щоб при зміні полів firstName та lastName в обєктові user2 дані не змінювались в першого
 
 const djCopy =  { ...dj };
-
-for (let key in dj) {
-    djCopy[key] = dj[key];
-}
