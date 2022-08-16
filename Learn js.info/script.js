@@ -11,7 +11,7 @@ convertStrToArray(names);
 // Маючи масив обєктів [{ name: 'Dima', admin: true }, { name: 'Andrey', admin: false }, { name: 'Oleg', admin: true }, { name: 'Alex', admin: false }].
 // Потрібно дописати фунцкію getAllAdminUsers яка повина повертати новий масив юзерів у яких поле admin = true
 
-let array = [{ name: 'Dima', admin: true }, { name: 'Andrey', admin: false }, { name: 'Oleg', admin: true }, { name: 'Alex', admin: false }]
+const array = [{ name: 'Dima', admin: true }, { name: 'Andrey', admin: false }, { name: 'Oleg', admin: true }, { name: 'Alex', admin: false }]
 function getAllAdminUsers(array) {
        return array.filter(el => el.admin );
 }
@@ -29,12 +29,11 @@ strToArray(str);
 // маючи масив ["angular", "react", "react", "angular", "react", "vue", "vue", "angular", "react"] потрібно написати функцію використовуючи reduce якаб повернула обєкт
 // { angular: 3, react: 4, vue: 2 }
 
-let lang = ["angular", "react", "react", "angular", "react", "vue", "vue", "angular", "react"]
-function count_duplicate(data){
-    const map = data.reduce(
-        function(prev, cur) {
+const lang = ["angular", "react", "react", "angular", "react", "vue", "vue", "angular", "react"]
+function countDuplicate(data){
+    const map = data.reduce((prev, cur) => {
             prev[cur] = (prev[cur] || 0) + 1;
             return prev;
         }, {});
 }
-count_duplicate(lang);
+countDuplicate(lang);
