@@ -16,9 +16,8 @@ const arr = [1, 2, 3, 1, 2]
 // });
 // console.log(newArr);
 
-function removedDublicate(data) {
-    return data.filter((el, index) => data.indexOf(el) === index);
-}
+const removedDublicate = data => data.filter((el, index) => data.indexOf(el) === index);
+
 console.log('removedDublicate', removedDublicate(arr))
 
 // 2) (із зірочкою) двохсторонній diff двох масивів, тобто [1, 2, 4] <> [1, 2, 3, 5] == [3, 4, 5]
@@ -44,9 +43,9 @@ const data =  [ { email: 'oleg@email.com', age: 25 }, { email: 'ron@email.com', 
 function uniqueEmail(data) {
     const newData = []
     const unique = data.filter(element => {
-        const isDublicate = newData.includes(element.email);
-
-        if (!isDublicate) {
+        const isDublicateEmail = newData.includes(element.email);
+        const isDublicateAge = newData.includes(element.age);
+        if (!isDublicateEmail && !isDublicateAge) {
             newData.push(element.email);
             return true;
         }
