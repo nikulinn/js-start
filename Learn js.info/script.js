@@ -30,10 +30,12 @@ strToArray(str);
 // { angular: 3, react: 4, vue: 2 }
 
 const lang = ["angular", "react", "react", "angular", "react", "vue", "vue", "angular", "react"]
+
 function countDuplicate(data){
-    const map = data.reduce((prev, cur) => {
-            prev[cur] = (prev[cur] || 0) + 1;
-            return prev;
-        }, {});
+    return data.reduce((total, current) => {
+        total[current] = (total[current] + 1) || 0
+        return total;
+    }, {});
 }
+
 countDuplicate(lang);
