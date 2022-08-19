@@ -42,6 +42,17 @@ const data =  [ { email: 'oleg@email.com', age: 25 }, { email: 'ron@email.com', 
 
 function uniqueEmail(data) {
     const newData = []
+    let key = []
+    const keys = data.forEach(el => {
+        console.log(key) 
+        if (!key.includes(Object.keys(el))) {
+            key.push(Object.keys(el));
+        }
+    });
+
+    console.log('keys', key);
+
+
     const unique = data.filter(element => {
         const isDublicateEmail = newData.includes(element.email);
         const isDublicateAge = newData.includes(element.age);
