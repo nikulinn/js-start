@@ -1,6 +1,6 @@
 // 1) * Task description: Write a method that returns a duplicate-free array 
 //     * Expected Result: Duplicate-free array [1, 2, 3, 1, 2] => [1, 2, 3]
-const arr = [1, 2, 3, 1, 2]
+const arr = [1, 2, 3, 1, 2];
 // 1.1 const newArr = [... new Set(arr)];
 // console.log(newArr);
 
@@ -18,7 +18,7 @@ const arr = [1, 2, 3, 1, 2]
 
 const removedDublicate = data => data.filter((el, index) => data.indexOf(el) === index);
 
-console.log('removedDublicate', removedDublicate(arr))
+removedDublicate(arr);
 
 // 2) (із зірочкою) двохсторонній diff двох масивів, тобто [1, 2, 4] <> [1, 2, 3, 5] == [3, 4, 5]
 const arr1 = [1, 2, 4];
@@ -34,37 +34,13 @@ const difference = [
     ...getDiference(arr2, arr1),
     ...getDiference(arr1, arr2)
 ]
-console.log('difference', difference);
 
 // 3) зробити всі елементи масиву унікальними 
 // [ { email: ’oleg@email.com’, age: 25 }, { email: ’ron@email.com’, age: 20 }, { email: ’oleg@email.com’, age: 25 }, { email: ’vit@email.com’, age: 30 } ]
 const data =  [ { email: 'oleg@email.com', age: 25 }, { email: 'ron@email.com', age: 20 }, { email: 'oleg@email.com', age: 25 }, { email: 'vit@email.com', age: 30 } ];
 
 function uniqueEmail(data) {
-    const newData = []
-    let key = []
-    const keys = data.forEach(el => {
-        console.log(key) 
-        if (!key.includes(Object.keys(el))) {
-            key.push(Object.keys(el));
-        }
-    });
-
-    console.log('keys', key);
-
-
-    const unique = data.filter(element => {
-        const isDublicateEmail = newData.includes(element.email);
-        const isDublicateAge = newData.includes(element.age);
-        if (!isDublicateEmail && !isDublicateAge) {
-            newData.push(element.email);
-            return true;
-        }
-        return false
-        
-    })
-
-    return newData
+    return [... new Set(data.map(el => JSON.stringify(el)))].map(el => JSON.parse(el));
 }
 
-console.log('removedDublicate', uniqueEmail(data));
+uniqueEmail(data);
