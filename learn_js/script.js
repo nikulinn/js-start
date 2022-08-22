@@ -111,24 +111,32 @@ console.log(userData)
 		- slug = має повертати title в форматі урли (this-is-slug-url)
 */
 class ToDo {
-    constructor(tasks) {
-        this.id = tasks.id,
-        this.title = tasks.title,
-        this.completed = tasks.completed
+    constructor(task) {
+        this.id = task.id,
+        this.title = task.title,
+        this.completed = task.completed,
+		this.tags = task.tags
     }
 
-    get #id() {
+    getId() {
         return this.id;
     }
 
-    get #title() {
+	getTitle() {
         return this.title;
     }
 
-    isCompleted(id) {
-        if (id === this.id) {
-            return this.completed;
-        }
-    }
+	isCompleted() {
+		return this.completed;
+	}
 
+	getTags() {
+		return this.tags;
+	}
+
+    getSlug() {
+		return this.title.split(' ').join('-');
+	}
 }
+
+const userTasks = tasks.map(task => new ToDo(task));
