@@ -53,7 +53,56 @@ const tasks = [
 		- unComppletedTask = (має повертати всі не закомплічені таски даного юзера)
 		- total = має повертати суму тасків юзера в залежності від параметра який ти передаси (all, completed, uncompleted)
 		- findTask = метод який приймає id таски та має повертати конкретний таск
+*/
 
+class User {
+    constructor(user, tasks) {
+        this.id = user.id,
+        this.firstName = user.firstName,
+        this.lastName = user.lastName
+		this.tasks = tasks.filter(task => task.userId === this.id)
+    }
+
+    getId() {
+       return this.id;
+    }
+
+    fullName() {
+        return `${this.firstName} ${this.lastName}`; 
+    }
+
+    completedTask() {
+        return this.tasks.filter(task => task.completed);
+    }
+
+    unCompletedTask() {
+        return this.tasks.filter(task => !task.completed);
+    }
+
+    total(condition) {
+        if (condition === User.ALL) {
+            return this.tasks.length;
+        } else if (condition === User.COMPLETED) {
+            return this.completedTask().length;
+        } else if (condition === User.UNCOMPLETED){
+            return this.unCompletedTask().length;
+        }
+    }
+
+    findTask(id) {
+        return tasks.find(task => task.id === id)
+    }
+}
+
+User.ALL = 'all';
+User.COMPLETED = 'completed';
+User.UNCOMPLETED = 'uncompleted';
+Object.freeze(User);
+
+const userData = users.map(user => new User(user, tasks))
+console.log(userData)
+
+/*
 	В класі тудухи мають бути такі методи
 		- id = має повертати айдіху юзера
 		- title = має повертати тайтл таски
@@ -61,128 +110,25 @@ const tasks = [
 		- tags = має повертати масив тегів
 		- slug = має повертати title в форматі урли (this-is-slug-url)
 */
-
-class User {
-    constructor(users, task) {
-       
-        this.id = users.forEach(user => user.id),
-        // this.firstName = users.firstName,
-        // this.lastName = users.lastName,
-        // this.completedTask = task.completed
-        // console.log(this.id)
+class ToDo {
+    constructor(tasks) {
+        this.id = tasks.id,
+        this.title = tasks.title,
+        this.completed = tasks.completed
     }
 
-    get id() {
-        let user = users.forEach(user => user.id);
-
-        console.log(this.id)
+    get #id() {
+        return this.id;
     }
 
-    set #id(newId) {
-        this.id = newId;
+    get #title() {
+        return this.title;
     }
 
-    get fullName() {
-        return `${this.firstName} ${this.lastName}`; 
+    isCompleted(id) {
+        if (id === this.id) {
+            return this.completed;
+        }
     }
 
-    completedTask() {
-		console.log(this.completedTask)
-		console.log(tasks)
-		return tasks;
-        // tasks.forEach(task => {
-		// 	console.log(task)
-        //     if (task.completed === true) {
-        //         return task;
-        //     }
-        // })
-    }
-}
-
-function completedTask(tasks) {
-	tasks.forEach(task => {
-
-		if (task.completed === true) {
-			console.log(task)
-			return task;
-		}
-	})
-}
-
-	// completedTask(tasks);
-
-const user = new User(users, tasks);
-
-
-
-const buttons = [
-    { name: 'Button 1', type: 'product', common: { color: '#FFF', background_color: '#262626' }, mobile: { font_size: '16px' }, tablet: { font_size: '18px' } },
-    { name: 'Button 2', type: 'product', common: { color: '#FFF', background_color: '#DDDDDD' }, mobile: { font_size: '16px' }, tablet: { font_size: '18px' }  },
-    { name: 'Button 3', type: 'regular', common: { color: '#FFF', background_color: '#CDCDCD' }, mobile: { font_size: '16px' }, tablet: { font_size: '18px' }  },
-    { name: 'Button 4', type: 'regular', common: { color: '#FFF', background_color: '#262626' }, mobile: { font_size: '16px' }, tablet: { font_size: '18px' }  },
-]
-
-class Button {
-    constructor(options) {
-        this.name = options.name,
-        this.type = options.type,
-        this.common = options.common,
-        this.mobile = options.mobile,
-        this.tablet = options.tablet
-    };
-
-    get #type() {
-        return this.type;
-    }
-
-    get #name() {
-        return this.name;
-    }
-
-    get #common() {
-        return this.common;
-    }
-
-    get #mobile() {
-        return this.mobile;
-    }
-
-    get #tablet() {
-        return this.tablet;
-    }
-
-    set #type(newType) {
-        this.type = newType;
-    }
-
-    set #name(newName) {
-        this.name = newName;
-    }
-
-    set #common(newCommon) {
-        this.common = newCommon;
-    }
-
-    set #mobile(newMobile) {
-        this.mobile = newMobile;
-    }
-
-    set #tablet(newTablet) {
-        this.tablet = newTablet;
-    }
-}
-const newBtn = new Button(buttons)
-
-class RegularButton extends Button {}
-class ProductButton extends Button {}
-
-let productButons;
-let regularButons;
-
-for (let button of buttons) {
-    if (button.type === 'product') {
-        productButons = new ProductButton(button);
-    } else {
-        regularButons = new RegularButton(button);
-    }
 }
