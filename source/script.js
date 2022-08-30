@@ -1,3 +1,10 @@
+
+// В тебе має бути клас Admin з такими методами
+//  - метод має повертати всі ключі обєкту options
+//  - використовуючи метод вище написати метод який має повертати всі обєкти buttons та texts
+//  - написати метод який повертає змерджений масив двох полів buttons та texts
+//  - написати метод який має повертати всі нейми поля texts
+
 const arr = [
   { title: 'admin', options: { buttons: [{ name: 'edit', type: 'submit' }, { name: 'save', type: 'submit' }], texts: [{ name: 'Edit', show: true}, {name: 'Save', show:false}] } },
   { title: 'admin 1', options: { buttons: [{ name: 'edit', type: 'submit' }, { name: 'save', type: 'submit' }], texts: [{ name: 'Edit', show: true}, {name: 'Save', show:false}] } },
@@ -5,11 +12,6 @@ const arr = [
   { title: 'admin 3', options: { buttons: [{ name: 'edit', type: 'submit' }, { name: 'save', type: 'submit' }] } }
 ]
 
-// В тебе має бути клас Admin з такими методами
-//  - метод має повертати всі ключі обєкту options
-//  - використовуючи метод вище написати метод який має повертати всі обєкти buttons та texts
-//  - написати метод який повертає змерджений масив двох полів buttons та texts
-//  - написати метод який має повертати всі нейми поля texts
 
 class Admin {
   constructor (data) {
