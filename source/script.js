@@ -68,42 +68,66 @@ const arr = [
     }
 ]
 // 1.  - написати функцію яка має повернути суму всих лайків
-function sumLikes(data) {
+function sumLikes(users) {
     let sum = 0;
-    data.forEach(item => sum += item.likes);
+    users.forEach(user => sum += user.likes);
     return sum;
 }
 sumLikes(arr);
 
 // 2. - написати фунцкію яка має повернути суму всих повідомлень (messages)
-function sumMessages(data) {
+function sumMessages(users) {
     let sum = 0;
-    data.forEach(item => sum += (item.messages ?? []).length);
+    users.forEach(user => sum += (user.messages ?? []).length);
     return sum;
 }
 sumMessages(arr);
 
 // 3.  - написати фунцію яка має повернути тільки апрувнутих юзерів
-function approvedUsers(data) {
-    return data.filter(item => {
-        if (item.approved) {
-            return item.name;
+function approvedUsers(users) {
+    return users.filter(user => {
+        if (user.approved) {
+            return user.name;
         }
     });
 }
 approvedUsers(arr);
 
 // 4. - потрібно написати функцію яка має перевіряти чи є хоч один юзер в кого немає повідомлень та повертати булеве значення
-function isMessages(data) {
+function isMessages(users) {
     let isMessage;
-    data.forEach(item => {
-        if (!item.messages) {
+    users.forEach(user => {
+        if (!user.messages) {
             isMessage = false;
         }
     });
     return isMessage;
 }
-isMessages(arr)
+isMessages(arr);
 
-// - також має бути фунцкія яка перевірятиме чи у всих юзерів більше 10 лайків і також має повертати булеве значення
-// - написати функцію яка має шукати юзера по id та повертати всі повідомлення відповідно від переданого статуса (status)
+// 5. - також має бути фунцкія яка перевірятиме чи у всих юзерів більше 10 лайків і також має повертати булеве значення
+
+function isMoreLikes(users) {
+    let sum = 0;
+    users.forEach(user => sum += user.likes);
+    return sum > 10;
+}
+isMoreLikes(arr);
+
+
+// 6. - написати функцію яка має шукати юзера по id та повертати всі повідомлення відповідно від переданого статуса (status)
+function messages(users, id, status) {
+    let allMessages;
+    users.filter(user => {
+        if (user.id === id) {
+            allMessages = user.messages.filter(message => {
+                if (message.status === status) {
+                    return message.text;
+                }
+            });
+        }
+    });
+    return allMessages
+}
+
+messages(arr, 1, 'watched');
