@@ -71,22 +71,28 @@ const arr = [
 function SumLikes(data) {
     let sum = 0;
     data.forEach(item => sum += item.likes)
-    console.log('likes', sum)
     return sum;
 }
 SumLikes(arr);
 
 // 2. - написати фунцкію яка має повернути суму всих повідомлень (messages)
-
 function SumMessages(data) {
     let sum = 0;
     data.forEach(item => sum += (item.messages ?? []).length);
-    console.log('messages', sum)
     return sum;
 }
-SumMessages(arr);
+console.log(SumMessages(arr));
 
 // 3.  - написати фунцію яка має повернути тільки апрувнутих юзерів
+function ApprovedUsers(data) {
+    return data.filter(item => {
+        if (item.approved) {
+            return item.name
+        }
+    });
+}
+ApprovedUsers(arr);
+
 // - потрібно написати функцію яка має перевіряти чи є хоч один юзер в кого немає повідомлень та повертати булеве значення
 // - також має бути фунцкія яка перевірятиме чи у всих юзерів більше 10 лайків і також має повертати булеве значення
 // - написати функцію яка має шукати юзера по id та повертати всі повідомлення відповідно від переданого статуса (status)
