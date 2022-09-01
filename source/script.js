@@ -1,4 +1,4 @@
-const arr = [
+const users = [
 {
     id: 1,
     name: 'Alex Smith',
@@ -69,19 +69,15 @@ const arr = [
 ]
 // 1.  - написати функцію яка має повернути суму всих лайків
 function sumLikes(users) {
-    let sum = 0;
-    users.forEach(user => sum += user.likes);
-    return sum;
+    return users.reduce((prev, curr) => prev += curr.likes, 0);
 }
-sumLikes(arr);
+sumLikes(users);
 
 // 2. - написати фунцкію яка має повернути суму всих повідомлень (messages)
 function sumMessages(users) {
-    let sum = 0;
-    users.forEach(user => sum += (user.messages ?? []).length);
-    return sum;
+    return users.reduce((prev, curr) =>prev+= (curr.messages ?? []).length, 0);
 }
-sumMessages(arr);
+sumMessages(users);
 
 // 3.  - написати фунцію яка має повернути тільки апрувнутих юзерів
 function approvedUsers(users) {
@@ -91,43 +87,31 @@ function approvedUsers(users) {
         }
     });
 }
-approvedUsers(arr);
+approvedUsers(users);
 
 // 4. - потрібно написати функцію яка має перевіряти чи є хоч один юзер в кого немає повідомлень та повертати булеве значення
 function isMessages(users) {
-    let isMessage;
-    users.forEach(user => {
-        if (!user.messages) {
-            isMessage = false;
-        }
-    });
-    return isMessage;
+    return users.some(user => !user.messages);
 }
-isMessages(arr);
+isMessages(users);
 
 // 5. - також має бути фунцкія яка перевірятиме чи у всих юзерів більше 10 лайків і також має повертати булеве значення
 
 function isMoreLikes(users) {
-    let sum = 0;
-    users.forEach(user => sum += user.likes);
-    return sum > 10;
+    return users.every(user => user.likes > 10);
 }
-isMoreLikes(arr);
+isMoreLikes(users);
 
 
 // 6. - написати функцію яка має шукати юзера по id та повертати всі повідомлення відповідно від переданого статуса (status)
-function messages(users, id, status) {
-    let allMessages;
-    users.filter(user => {
-        if (user.id === id) {
-            allMessages = user.messages.filter(message => {
-                if (message.status === status) {
-                    return message.text;
-                }
-            });
-        }
-    });
-    return allMessages
+function messages(id, status) {
+    let currentUser = users.find(user => user.id === id);
+    if(!!currentUser.messages) {
+        return currentUser.messages.filter(message => (message.status === status) ? message.text:'')
+    }
+    else {
+        return "No Messages"
+    }
 }
 
-messages(arr, 1, 'watched');
+console.log(messages(1, 'watched'));
