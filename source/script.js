@@ -17,15 +17,15 @@ class Admin {
     constructor (data) {
         this.options = data.options
         this.texts = data.options.texts
-        this.butons = data.options.butons
+        this.buttons = data.options.buttons
     }
 
     getOptionKey () {
         return Object.keys(this.options)
     }
 
-    getObjects (key) {
-        return this.options[key]
+    getObjects () {
+        return this.getOptionKey().map(key => this.options[key]);
     }
 
     mergeOptions () {
@@ -44,4 +44,7 @@ class Admin {
 }
 
 const admin = new Admin(arr[0])
-admin.getTextNames()
+admin.getOptionKey();
+console.log('getObjects', admin.getObjects('buttons'));
+admin.mergeOptions();
+admin.getTextNames();
