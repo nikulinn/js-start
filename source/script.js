@@ -6,45 +6,44 @@
 //  - написати метод який має повертати всі нейми поля texts
 
 const arr = [
-    { title: 'admin', options: { buttons: [{ name: 'edit', type: 'submit' }, { name: 'save', type: 'submit' }], texts: [{ name: 'Edit', show: true}, {name: 'Save', show:false}] } },
-    { title: 'admin 1', options: { buttons: [{ name: 'edit', type: 'submit' }, { name: 'save', type: 'submit' }], texts: [{ name: 'Edit', show: true}, {name: 'Save', show:false}] } },
-    { title: 'admin 2', options: { buttons: [{ name: 'edit', type: 'submit' }, { name: 'save' }], texts: [{ name: 'Edit', show: true}, {name: 'Save', show:false}] } },
-    { title: 'admin 3', options: { buttons: [{ name: 'edit', type: 'submit' }, { name: 'save', type: 'submit' }] } }
+  { title: 'admin', options: { buttons: [{ name: 'edit', type: 'submit' }, { name: 'save', type: 'submit' }], texts: [{ name: 'Edit', show: true }, { name: 'Save', show:false}] } },
+  { title: 'admin 1', options: { buttons: [{ name: 'edit', type: 'submit' }, { name: 'save', type: 'submit' }], texts: [{ name: 'Edit', show: true }, { name: 'Save', show:false}] } },
+  { title: 'admin 2', options: { buttons: [{ name: 'edit', type: 'submit' }, { name: 'save' }], texts: [{ name: 'Edit', show: true }, { name: 'Save', show:false}] } },
+  { title: 'admin 3', options: { buttons: [{ name: 'edit', type: 'submit' }, { name: 'save', type: 'submit' }] } }
 ]
 
-
 class Admin {
-    constructor (data) {
-        this.options = data.options
-        this.texts = data.options.texts
-        this.buttons = data.options.buttons
-    }
+  constructor (data) {
+    this.options = data.options
+    this.texts = data.options.texts
+    this.buttons = data.options.buttons
+  }
 
-    getOptionKey () {
-        return Object.keys(this.options)
-    }
+  getOptionKey () {
+    return Object.keys(this.options)
+  }
 
-    getObjects () {
-        return this.getOptionKey().map(key => this.options[key]);
-    }
+  getObjects () {
+    return this.getOptionKey().map(key => this.options[key])
+  }
 
-    mergeOptions () {
+  mergeOptions () {
+    if (!!this.texts && !!this.buttons) {
         return { ...this.buttons[0], ...this.texts[0] }
-    }
+    } 
+    return 'No data';
+  }
 
-    getTextNames () {
-        const names = this.texts.map(text => [...Object.keys(text)])
-        const namesArr = [].concat.apply([], names)
-
-        return namesArr.reduce(function(previousValue, currentValue) {
-            if (previousValue.indexOf(currentValue) < 0) previousValue.push(currentValue);
-            return previousValue
-        }, [])
-    }
+  getTextNames () {
+    if (!!this.options.texts) {
+      return this.texts.map(item => item.name)
+    } 
+    return 'No data';
+  }
 }
 
-const admin = new Admin(arr[0])
-admin.getOptionKey();
-console.log('getObjects', admin.getObjects('buttons'));
-admin.mergeOptions();
-admin.getTextNames();
+const admin = new Admin(arr[1])
+admin.getOptionKey()
+admin.getObjects('buttons')
+admin.mergeOptions()
+admin.getTextNames()
