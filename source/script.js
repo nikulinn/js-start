@@ -1,117 +1,112 @@
 const users = [
-{
+  {
     id: 1,
     name: 'Alex Smith',
     approved: true,
     likes: 12,
     messages: [
-        { text: "Hello", status: "new" },
-        { text: "Hello 2", status: "watched" },
-        { text: "Hello 3", status: "readed" },
-        { text: "Hello 4", status: "watched" },
-        { text: "Hello 5", status: "new" },
-        { text: "Hello 6", status: "watched" },
-        { text: "Hello 7", status: "new" },
-        { text: "Hello 8", status: "readed" },
-        { text: "Hello 9", status: "watched" },
-        { text: "Hello 10", status: "watched" },
-        { text: "Hello 11", status: "watched" },
-        { text: "Hello 12", status: "new" },
-        { text: "Hello 13", status: "readed" },
-        { text: "Hello 14", status: "watched" },
-        { text: "Hello 15", status: "watched" },
-        { text: "Hello 16", status: "readed" },
-        { text: "Hello 17", status: "watched" }
+      { text: 'Hello', status: 'new' },
+      { text: 'Hello 2', status: 'watched' },
+      { text: 'Hello 3', status: 'readed' },
+      { text: 'Hello 4', status: 'watched' },
+      { text: 'Hello 5', status: 'new' },
+      { text: 'Hello 6', status: 'watched' },
+      { text: 'Hello 7', status: 'new' },
+      { text: 'Hello 8', status: 'readed' },
+      { text: 'Hello 9', status: 'watched' },
+      { text: 'Hello 10', status: 'watched' },
+      { text: 'Hello 11', status: 'watched' },
+      { text: 'Hello 12', status: 'new' },
+      { text: 'Hello 13', status: 'readed' },
+      { text: 'Hello 14', status: 'watched' },
+      { text: 'Hello 15', status: 'watched' },
+      { text: 'Hello 16', status: 'readed' },
+      { text: 'Hello 17', status: 'watched' }
     ]
-},
-    {
-        id: 2,
-        name: 'Alex Rose',
-        approved: false,
-        likes: 34,
-        messages: [
-            { text: "Hello", status: "watched" },
-            { text: "Hello 2", status: "watched" },
-            { text: "Hello 3", status: "readed" },
-            { text: "Hello 4", status: "watched" },
-            { text: "Hello 5", status: "watched" },
-            { text: "Hello 6", status: "watched" },
-            { text: "Hello 7", status: "watched" },
-            { text: "Hello 8", status: "readed" },
-            { text: "Hello 9", status: "watched" },
-            { text: "Hello 10", status: "watched" },
-            { text: "Hello 11", status: "watched" },
-            { text: "Hello 12", status: "new" }
-        ]
-    },
-    {
-        id: 3,
-        name: 'David Doe',
-        approved: true,
-        likes: 114,
-        messages: [
-            { text: "Hello", status: "watched" },
-            { text: "Hello 2", status: "watched" },
-            { text: "Hello 3", status: "readed" },
-            { text: "Hello 4", status: "new" },
-            { text: "Hello 5", status: "watched" },
-            { text: "Hello 6", status: "new" },
-            { text: "Hello 7", status: "watched" }
-        ]
-    },
-    {
-        id: 4,
-        name: 'Daniel Thomas',
-        approved: true,
-        likes: 21,
-        messages: null
-    }
+  },
+  {
+    id: 2,
+    name: 'Alex Rose',
+    approved: false,
+    likes: 34,
+    messages: [
+      { text: 'Hello', status: 'watched' },
+      { text: 'Hello 2', status: 'watched' },
+      { text: 'Hello 3', status: 'readed' },
+      { text: 'Hello 4', status: 'watched' },
+      { text: 'Hello 5', status: 'watched' },
+      { text: 'Hello 6', status: 'watched' },
+      { text: 'Hello 7', status: 'watched' },
+      { text: 'Hello 8', status: 'readed' },
+      { text: 'Hello 9', status: 'watched' },
+      { text: 'Hello 10', status: 'watched' },
+      { text: 'Hello 11', status: 'watched' },
+      { text: 'Hello 12', status: 'new' }
+    ]
+  },
+  {
+    id: 3,
+    name: 'David Doe',
+    approved: true,
+    likes: 114,
+    messages: [
+      { text: 'Hello', status: 'watched' },
+      { text: 'Hello 2', status: 'watched' },
+      { text: 'Hello 3', status: 'readed' },
+      { text: 'Hello 4', status: 'new' },
+      { text: 'Hello 5', status: 'watched' },
+      { text: 'Hello 6', status: 'new' },
+      { text: 'Hello 7', status: 'watched' }
+    ]
+  },
+  {
+    id: 4,
+    name: 'Daniel Thomas',
+    approved: true,
+    likes: 21,
+    messages: null
+  }
 ]
 // 1.  - написати функцію яка має повернути суму всих лайків
-function sumLikes(users) {
-    return users.reduce((prev, curr) => prev += curr.likes, 0);
+function sumLikes (users) {
+  return users.reduce((prev, curr) => prev += curr.likes, 0);
 }
-sumLikes(users);
+sumLikes(users)
 
 // 2. - написати фунцкію яка має повернути суму всих повідомлень (messages)
-function sumMessages(users) {
-    return users.reduce((prev, curr) =>prev+= (curr.messages ?? []).length, 0);
+function sumMessages (users) {
+  return users.reduce((prev, curr) => prev += (curr.messages ?? []).length, 0);
 }
-sumMessages(users);
+sumMessages(users)
 
 // 3.  - написати фунцію яка має повернути тільки апрувнутих юзерів
-function approvedUsers(users) {
-    return users.filter(user => {
-        if (user.approved) {
-            return user.name;
-        }
-    });
+function approvedUsers (users) {
+  return users.filter(user => {
+    if (user.approved) {
+      return user.name
+    }
+  })
 }
-approvedUsers(users);
+approvedUsers(users)
 
 // 4. - потрібно написати функцію яка має перевіряти чи є хоч один юзер в кого немає повідомлень та повертати булеве значення
-function isMessages(users) {
-    return users.some(user => !user.messages);
+function isMessages (users) {
+  return users.some(user => !user.messages);
 }
-isMessages(users);
+isMessages(users)
 
 // 5. - також має бути фунцкія яка перевірятиме чи у всих юзерів більше 10 лайків і також має повертати булеве значення
 
-function isMoreLikes(users) {
+function isMoreLikes (users) {
     return users.every(user => user.likes > 10);
 }
-isMoreLikes(users);
-
+isMoreLikes(users)
 
 // 6. - написати функцію яка має шукати юзера по id та повертати всі повідомлення відповідно від переданого статуса (status)
-function messages(id, status) {
-    let currentUser = users.find(user => user.id === id);
-    if(!!currentUser.messages) {
-        return currentUser.messages.filter(message => (message.status === status) ? message.text:'')
-    }
-    else {
-        return "No Messages"
-    }
+function messages (id, status) {
+  const currentUser = users.find(user => user.id === id);
+  const filteredStatus = currentUser.messages?.filter(message => message.status === status);
+  return filteredStatus?.map(message => message.text) ?? 'No Messages'
 }
 
-console.log(messages(1, 'watched'));
+console.log(messages(4, 'watched'))
