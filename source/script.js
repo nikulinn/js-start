@@ -20,11 +20,11 @@ class Admin {
   }
 
   getOptionKey () {
-    return Object.keys(this.options)
+    return Object.keys(this.options);
   }
 
   getObjects () {
-    return this.getOptionKey().map(key => this.options[key])
+    return this.getOptionKey().map(key => this.options[key]);
   }
 
   mergeOptions () {
@@ -35,15 +35,12 @@ class Admin {
   }
 
   getTextNames () {
-    if (!!this.options.texts) {
-      return this.texts.map(item => item.name)
-    } 
-    return 'No data';
+      return this.texts?.map(item => item.name) ??  'No data';
   }
 }
 
-const admin = new Admin(arr[1])
-admin.getOptionKey()
-admin.getObjects('buttons')
-admin.mergeOptions()
-admin.getTextNames()
+const admin = new Admin(arr[1]);
+admin.getOptionKey();
+admin.getObjects('buttons');
+admin.mergeOptions();
+admin.getTextNames();
