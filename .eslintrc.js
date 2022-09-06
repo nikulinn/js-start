@@ -1,11 +1,6 @@
-const aliases = require('./config/webpack/aliases')
-
-const JS_PARSER = '@babel/eslint-parser'
-
 module.exports = {
   extends: ['eslint:recommended'],
   plugins: ['import'],
-  parser: JS_PARSER,
   parserOptions: {
     ecmaVersion: 8,
     sourceType: 'module',
@@ -13,9 +8,6 @@ module.exports = {
   },
   settings: {
     'import/resolver': {
-      alias: {
-        map: Object.entries(aliases)
-      },
       node: {
         extensions: ['.js', '.scss', '.css', '.vue', '.html']
       }
@@ -118,22 +110,6 @@ module.exports = {
       'error',
       'never',
       { scss: 'always', html: 'always' }
-    ],
-    'import/order': [
-      'error',
-      {
-        pathGroups: Object.keys(aliases).map((name) => ({
-          pattern: `${name}/**`,
-          group: 'external'
-        })),
-        groups: [
-          'builtin',
-          'external',
-          'internal',
-          'parent',
-          'sibling'
-        ]
-      }
     ],
     'import/newline-after-import': 'error',
     'max-len': ['error', {
