@@ -28,14 +28,11 @@ class Admin {
   }
 
   mergeOptions () {
-    if (!!this.texts && !!this.buttons) {
-        return { ...this.buttons[0], ...this.texts[0] }
-    } 
-    return 'No data';
+    return [...this?.buttons, ...this?.texts ??[]]
   }
 
   getTextNames () {
-      return this.texts?.map(item => item.name) ??  'No data';
+    return this.texts?.map(item => item.name) ??  'No data';
   }
 }
 
