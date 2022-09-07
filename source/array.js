@@ -45,7 +45,7 @@ const tasks = [
 ]
 
 /*
-	Маючи два масиви users та tasks потрібно створити для ник клас. 
+	Маючи два масиви users та tasks потрібно створити для ник клас.
 	В класі юзера мають бути такі методи
 		- id = має повертати айдіху юзера
 		- fullName = має повертати повний нейм юзера
@@ -56,6 +56,10 @@ const tasks = [
 */
 
 class User {
+	static ALL = 'all';
+	static COMPLETED = 'completed';
+    static UNCOMPLETED = 'uncompleted';
+
     constructor(user, tasks) {
         this.id = user.id,
         this.firstName = user.firstName,
@@ -63,12 +67,12 @@ class User {
 		this.tasks = tasks.filter(task => task.userId === this.id)
     }
 
-    getId() {
+    get id() {
        return this.id;
     }
 
-    fullName() {
-        return `${this.firstName} ${this.lastName}`; 
+    get fullName() {
+        return `${this.firstName} ${this.lastName}`;
     }
 
     completedTask() {
@@ -94,13 +98,7 @@ class User {
     }
 }
 
-User.ALL = 'all';
-User.COMPLETED = 'completed';
-User.UNCOMPLETED = 'uncompleted';
-Object.freeze(User);
-
 const userData = users.map(user => new User(user, tasks))
-console.log(userData)
 
 /*
 	В класі тудухи мають бути такі методи
@@ -111,6 +109,7 @@ console.log(userData)
 		- slug = має повертати title в форматі урли (this-is-slug-url)
 */
 class ToDo {
+
     constructor(task) {
         this.id = task.id,
         this.title = task.title,
@@ -118,24 +117,24 @@ class ToDo {
 		this.tags = task.tags
     }
 
-    getId() {
+    get id() {
         return this.id;
     }
 
-	getTitle() {
+	get title() {
         return this.title;
     }
 
-	isCompleted() {
+	get isCompleted() {
 		return this.completed;
 	}
 
-	getTags() {
+	get tags() {
 		return this.tags.split(',');
 	}
 
-    getSlug() {
-		return this.title.split(' ').join('-');
+    get slug() {
+		return this.title.split(' ').join('-').toLowerCase();
 	}
 }
 
