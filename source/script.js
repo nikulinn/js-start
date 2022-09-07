@@ -105,8 +105,9 @@ isMoreLikes(users)
 // 6. - написати функцію яка має шукати юзера по id та повертати всі повідомлення відповідно від переданого статуса (status)
 function messages (id, status) {
  return users
-              .find(user => user.id === id).messages?.filter(message => message.status === status)
+              .find(user => user.id === id).messages
+              ?.filter(message => message.status === status)
               .map(message => message.text) ?? 'No Messages';
 }
 
-console.log(messages(1, 'watched'))
+console.log(messages(4, 'watched'))
