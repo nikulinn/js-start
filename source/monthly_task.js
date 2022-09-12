@@ -1,7 +1,8 @@
 
 /*
 	class User
-	- метод має поверати full_name в такому форматі “Alex Smith” зверни увагу що перші літери мають бути в верхньому регістрі
+	+ метод має поверати full_name в такому форматі “Alex Smith” зверни увагу що перші літери мають бути в верхньому регістрі
+	+ метод який має знаходиит poll по id
 */
 const data = [
     {
@@ -57,6 +58,7 @@ class User {
     constructor(data) {
         this.name = data.first_name;
         this.sername = data.last_name;
+        this.polls = data.polls;
     }
 
     capitalize(string) {
@@ -64,45 +66,90 @@ class User {
     }
 
     get fullName() {
-        return `${this.capitalize(this.name)} ${this.capitalize(this.sername)}`
+        return `${this.capitalize(this?.name ?? 'John')} ${this.capitalize(this?.sername ?? 'Doe')}`
+    }
+
+    findPoll(id) {
+       return this.polls.find(poll => poll.id === id);
     }
 }
 
 const newUser = new User(data[0])
 
-const polls = data.map(item => item.polls);
 /*
 class Poll
 в класі Polls має бути поле де має зберігатись оригінальний обєкт даних та обєкт в якому будуть відбуватись зміни
-- метод який має додавати новий результат в поле results
++ метод який має додавати новий результат в поле  votes
 + метод який має додавати новий item обєк в масив items
-- метод має повертати чи був змінений обєкт чи ні
-- метод має повертати статистичну суму резальтата поля votes => { 1: 5, 2: 4, ‘awesome’: 2, bad: 1 }
-- метод який має знаходиит poll по id
-- метод який повертає чи other опція ввімкнена
-- метод який має повертати масив полів відповідно до його типу
-мають бути класи SinglePoll та MultiplePoll які наслідуються від класу Poll тобто при створені полу ти має визиват SinglePoll чи MultiplePoll відповідно від статусу
+- метод має повертати чи був змінений обєкт чи ні (Poll)
++ метод має повертати статистичну суму резальтата поля votes => { 1: 5, 2: 4, ‘awesome’: 2, bad: 1 }
++ метод який повертає чи other опція ввімкнена
+- метод який має повертати масив полів відповідно до його типу (на уточнені)
 */
 
 class Poll {
-    constructor(data) {
-        this.items = data.items;
-        console.log(this.items)
-        this.results = data.push(results)
+    constructor(polls) {
+        this.original = polls;
+        this.poll = JSON.parse(JSON.stringify(polls))
+        this.items = this.poll.items;
+        this.votes = this.poll.votes;
+        this.other = this.poll.other;
+        this.type= this.poll.type
+        console.log('original', this.original);
+        console.log('new', this.poll);
     }
 
-    get newItem() {
-        return this.items
+    addVote(vote) {
+        this.votes.push(vote)
     }
 
-    set newItem(answer) {
+    addItem(answer) {
         let itemId = this.items.length + 1;
         this.items.push({'id': itemId, 'answer': answer});
     }
 
-    isChanged
+    isModified() {
+        return Object.keys(this.original)
+            .some(key => this.original[key] !== this.poll[key]);
+    }
+
+    duplicateCount() {
+        return this.votes.reduce((total, current) => {
+            total[current] = (total[current] + 1) || 1
+            return total;
+        }, {});
+    }
+
+    get isOther() {
+        return this.other;
+    }
 }
-console.log(polls)
-const poll = new Poll(polls[0][0])
-poll.newItem = 'new'
-console.log(poll.newItem);
+const polls = data[0].polls;
+// const pollCurrent = new Poll(data[0].polls[1]);
+//
+// pollCurrent.addVote(5);
+// pollCurrent.addItem('test');
+// console.log('isMofify', pollCurrent.isModified());
+// console.log('duplicateCount', pollCurrent.duplicateCount());
+
+
+// 3. мають бути класи SinglePoll та MultiplePoll які наслідуються від класу Poll тобто при створені полу ти
+// має визиват SinglePoll чи MultiplePoll відповідно від статусу
+
+class SinglePoll extends Poll {}
+class MultiplePoll extends Poll {}
+
+let newSinglePoll
+let newMultiplePoll
+
+for (let poll of polls) {
+    if (poll.type === 'single') {
+        console.log(poll.type)
+        newSinglePoll = new SinglePoll(poll);
+    } else {
+        console.log(poll.type)
+        newMultiplePoll = new MultiplePoll(poll);
+    }
+}
+
+
