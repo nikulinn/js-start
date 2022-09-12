@@ -57,7 +57,7 @@ const data = [
 class User {
   constructor (data) {
     this.name = data.first_name
-    this.sername = data.last_name
+    this.surname = data.last_name
     this.polls = data.polls
   }
 
@@ -66,7 +66,7 @@ class User {
   }
 
   get fullName () {
-    return `${this.capitalize(this?.name ?? 'John')} ${this.capitalize(this?.sername ?? 'Doe')}`
+    return `${this.capitalize(this?.name ?? 'John')} ${this.capitalize(this?.surname ?? 'Doe')}`
   }
 
   findPoll (id) {
@@ -119,7 +119,7 @@ class Poll {
     return this.other;
   }
 }
-const polls = data[0].polls
+const poll = data[0].polls[1];
 const pollCurrent = new Poll(data[0].polls[1]);
 pollCurrent.isModified();
 
@@ -133,15 +133,27 @@ pollCurrent.isModified();
 // має визиват SinglePoll чи MultiplePoll відповідно від статусу
 
 class SinglePoll extends Poll {
-  constructor(poll) {
-    super(poll);
+  constructor (poll) {
+    super(poll)
     this.type = 'single'
   }
 }
 
 class MultiplePoll extends Poll {
-  constructor(poll) {
-    super(poll);
+  constructor (poll) {
+    super(poll)
     this.type = 'multiple'
   }
 }
+
+function createPoll (poll) {
+  switch (poll.type) {
+    case 'multiple':
+      return new MultiplePoll(poll)
+    case 'single':
+    default:
+      return new SinglePoll(poll)
+  }
+}
+
+createPoll(poll)
