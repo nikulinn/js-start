@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 // В тебе має бути клас Admin з такими методами
 //  - метод має повертати всі ключі обєкту options
@@ -41,3 +42,8 @@ admin.getOptionKey();
 admin.getObjects('buttons');
 admin.mergeOptions();
 admin.getTextNames();
+=======
+function test() {
+  return 2 + 2;
+}
+>>>>>>> main
