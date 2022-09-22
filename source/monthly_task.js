@@ -83,53 +83,48 @@ class Poll
 в класі Polls має бути поле де має зберігатись оригінальний обєкт даних та обєкт в якому будуть відбуватись зміни
 + метод який має додавати новий результат в поле  votes
 + метод який має додавати новий item обєкт в масив items
-- метод має повертати чи був змінений обєкт чи ні (Poll)
++ метод має повертати чи був змінений обєкт чи ні (Poll)
 + метод має повертати статистичну суму резальтата поля votes => { 1: 5, 2: 4, ‘awesome’: 2, bad: 1 }
 + метод який повертає чи other опція ввімкнена
-- метод який має повертати масив полів відповідно до його типу (на уточнені)
 */
 class Poll {
     constructor(poll) {
         this.original = poll;
         this.poll = JSON.parse(JSON.stringify(this.original));
-        this.items = this.poll.items;
-        this.votes = this.poll.votes;
-        this.other = this.poll.other;
-        this.type = this.poll.type;
+    }
+    get #items() {
+        return this.poll.items;
+    }
+
+    get #votes() {
+        return this.poll.votes;
+    }
+
+    get other() {
+        return this.poll.other;
     }
 
     addVote(vote) {
-        this.votes.push(vote);
+        this.#votes.push(vote);
     }
 
     addItem(answer) {
-        this.items.push({ id: this.items.length + 1, answer });
+        this.#items.push({ id: this.#items.length + 1, answer });
     }
 
     isModified() {
         return JSON.stringify(this.original) !== JSON.stringify(this.poll);
     }
 
-    duplicateCount() {
-        return this.votes.reduce((total, current) => {
+    getStatisticSum() {
+        return this.#votes.reduce((total, current) => {
             total[current] = total[current] + 1 || 1;
             return total;
         }, {});
     }
-
-    get isOther() {
-        return this.other;
-    }
 }
 const poll = data[0].polls[1];
 const pollCurrent = new Poll(data[0].polls[1]);
-pollCurrent.isModified();
-
-//
-// pollCurrent.addVote(5);
-// pollCurrent.addItem('test');
-// console.log('isMofify', pollCurrent.isModified());
-// console.log('duplicateCount', pollCurrent.duplicateCount());
 
 // 3. мають бути класи SinglePoll та MultiplePoll які наслідуються від класу Poll тобто при створені полу ти
 // має визиват SinglePoll чи MultiplePoll відповідно від статусу
