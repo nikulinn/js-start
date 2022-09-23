@@ -14,18 +14,13 @@
                     v-model="newItem"
                     type="text"
                     placeholder="All New List"
-                    @keyup.enter="items.push({id:items.length + 1, label: newItem})"
+                    @keyup.enter="saveItem"
                 />
                 <label for="">
                     <input type="checkbox" v-model="newItemHighPriority" />
                     High Priority
                 </label>
-                <button
-                    @click="items.push({id:items.length + 1, label: newItem})"
-                    class="btn"
-                >
-                    Save Item
-                </button>
+                <button @click="saveItem" class="btn">Save Item</button>
             </div>
             <ul>
                 <li v-for="item in items" :key="item.id">{{ item.label }}</li>
@@ -45,6 +40,15 @@
                             { id: 3, label: "20 cups" },
                         ],
                     };
+                },
+                methods: {
+                    saveItem() {
+                        this.items.push({
+                            id: this.items.length + 1,
+                            label: this.newItem,
+                        });
+                        this.newItem = "";
+                    },
                 },
             }).mount("#shopping-list");
         </script>
