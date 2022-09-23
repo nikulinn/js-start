@@ -76,7 +76,6 @@ class User {
 }
 
 const newUser = new User(data[0]);
-console.log(newUser.fullName);
 
 /*
 class Poll
