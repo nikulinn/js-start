@@ -87,36 +87,38 @@ class Poll
 + метод який повертає чи other опція ввімкнена
 */
 class Poll {
-    constructor(poll) {
-        this.original = poll;
-        this.poll = JSON.parse(JSON.stringify(this.original));
+    #original;
+    #poll;
+    constructor(polls) {
+        this.#original = polls;
+        this.#poll = JSON.parse(JSON.stringify(this.#original));
     }
-    get #items() {
-        return this.poll.items;
+    get items() {
+        return this.#poll.items;
     }
 
-    get #votes() {
-        return this.poll.votes;
+    get votes() {
+        return this.#poll.votes;
     }
 
     get other() {
-        return this.poll.other;
+        return this.#poll.other;
     }
 
     addVote(vote) {
-        this.#votes.push(vote);
+        this.votes.push(vote);
     }
 
     addItem(answer) {
-        this.#items.push({ id: this.#items.length + 1, answer });
+        this.items.push({ id: this.items.length + 1, answer });
     }
 
     isModified() {
-        return JSON.stringify(this.original) !== JSON.stringify(this.poll);
+        return JSON.stringify(this.#original) !== JSON.stringify(this.#poll);
     }
 
     getStatisticSum() {
-        return this.#votes.reduce((total, current) => {
+        return this.votes.reduce((total, current) => {
             total[current] = total[current] + 1 || 1;
             return total;
         }, {});
