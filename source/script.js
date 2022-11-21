@@ -5,8 +5,6 @@
 // видаляти пост та
 // редагування поста
 
-// const API = new FetchWrapper("https://jsonplaceholder.typicode.com");
-
 window.onload = function () {
     const showPosts = document.querySelector("[data-show-post]");
     const listWrap = document.querySelector("[data-post-list]");
@@ -17,16 +15,46 @@ window.onload = function () {
     const titleField = document.querySelector("[data-field-title]");
     const bodyField = document.querySelector("[data-field-body]");
 
-    async function fetchData() {
-        return fetch("https://jsonplaceholder.typicode.com/posts")
-            .then((response) => response.json())
-            .then((posts) => {
-                createList(posts);
-            });
+    class FetchWrapper {
+        constructor(baseURL) {
+            this.baseURL = baseURL;
+        }
+
+        get(endpoint) {
+            return fetch(this.baseURL + endpoint).then((response) =>
+                response.json()
+            );
+        }
+
+        post(endpoint, body) {
+            return this._send("post", endpoint, body);
+        }
+
+        delete(endpoint, body) {
+            return this._send("delete", endpoint, body);
+        }
+
+        _send(method, endpoint, body) {
+            return fetch(this.baseURL + endpoint, {
+                method,
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(body),
+            }).then((response) => response.json());
+        }
+    }
+
+    const API = new FetchWrapper("https://jsonplaceholder.typicode.com");
+
+    async function getPost() {
+        return API.get("/posts").then((posts) => {
+            createList(posts);
+        });
     }
 
     async function getPostList() {
-        posts = await fetchData();
+        posts = await getPost();
         return posts;
     }
 
@@ -45,26 +73,21 @@ window.onload = function () {
     });
 
     async function updatehData(title, body, id) {
-        fetch("https://jsonplaceholder.typicode.com/posts", {
-            method: "POST",
-            body: JSON.stringify({
-                title: title,
-                body: body,
-                userId: id,
-            }),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-            },
-        })
-            .then((response) => response.json())
-            .then((json) => console.log("Update Success"));
+        API.post("/posts", {
+            title: title,
+            body: body,
+            userId: id,
+        }).then((data) => {
+            console.log(data);
+            console.log("Update Success");
+        });
     }
 
     function removeData(id) {
-        fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
-            method: "DELETE",
+        API.delete(`/posts/${id}`).then((data) => {
+            console.log(data);
+            console.log("Remove success");
         });
-        console.log("Remove success");
     }
 
     createPostButton.addEventListener("click", (event) => {
