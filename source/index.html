@@ -2,133 +2,97 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>Lesson First</title>
+        <title>Task with fetch</title>
+        <script src="script.js"></script>
     </head>
     <body>
         <style>
+            .post-wrap {
+                max-width: 300px;
+                padding: 16px;
+            }
             .strikeout {
                 text-decoration: line-through;
             }
             .priority {
                 color: burlywood;
             }
+            .form {
+                display: flex;
+                flex-direction: column;
+                max-width: 200px;
+                margin: 0 auto 16px;
+                padding: 20px;
+            }
+            .form-list {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 8px;
+                flex-direction: column;
+            }
+            .button {
+                background-color: black;
+                color: #fff;
+                font-size: 12px;
+                box-shadow: none;
+                padding: 6px 24px;
+                width: 100%;
+                max-width: 200px;
+                border: 0;
+            }
+            .show-post-button {
+                margin: 0 auto;
+                display: block;
+            }
+            h6 {
+                font-size: 14px;
+                margin-bottom: 8px;
+                margin-top: 0;
+                text-transform: capitalize;
+            }
+            p {
+                font-size: 12px;
+            }
+            li {
+                list-style: none;
+                margin-bottom: 16px;
+                max-width: 600px;
+            }
+            .list-wrap {
+                display: flex;
+                justify-content: space-between;
+            }
+            .btn-delete {
+                margin-left: 8px;
+            }
+            .btn-edit {
+                margin-left: auto;
+            }
         </style>
-        <div></div>
-
-        <div id="shopping-list">
-            <div class="header">
-                <h1>{{posts || 'Welcome'}}</h1>
-                <button v-if="editing" @click="doEdit(false)" type="button">
-                    Cancel
-                </button>
-                <button v-else @click="doEdit(true)" type="button">
-                    Add Item
-                </button>
-            </div>
-
-            <div v-if="editing">
-                <input
-                    v-model="newItem"
-                    type="text"
-                    placeholder="All New List"
-                    @keyup.enter="saveItem"
-                />
-                <label for="">
-                    <input type="checkbox" v-model="newItemHighPriority" />
-                    High Priority
-                </label>
+        <div class="">
+            <div class="post-wrap">
+                <form class="form" data-post-create>
+                    <label class="form-list" for=""
+                        >Title
+                        <input type="text" data-field-title required />
+                    </label>
+                    <label class="form-list" for=""
+                        >Body
+                        <textarea data-field-body required></textarea>
+                    </label>
+                    <button class="button" type="button" data-button-create>
+                        Add post
+                    </button>
+                </form>
                 <button
+                    class="button show-post-button"
                     type="button"
-                    @click="saveItem"
-                    class="btn"
-                    v-bind:disabled="newItem.length === 0"
+                    data-show-post
                 >
-                    Save Item
+                    Show Posts
                 </button>
-                <p>{{characterCount}}/200</p>
             </div>
-            <a v-bind:herf="newItem">Dynamic Link</a>
-            <p v-if="items.length === 0">No items</p>
-            <ul>
-                <li v-for="post in posts" @click="togglePurchased(post)">
-                    {{ item.label }}
-                </li>
-            </ul>
+            <ul data-post-list></ul>
         </div>
-        <script src="https://unpkg.com/vue@3"></script>
-        <script>
-            async function fetchData() {
-                return fetch("https://jsonplaceholder.typicode.com/posts")
-                    .then((response) => response.json())
-                    .then((data) => data);
-            }
-            async function getPostList() {
-                let posts = await fetchData();
-                return posts;
-            }
-            const posts = getPostList();
-            console.log(posts);
-
-            const shoppingList = Vue.createApp({
-                data() {
-                    return {
-                        posts: posts,
-                        header: "Shopping list app!",
-                        editing: false,
-                        newItem: "",
-                        newItemHighPriority: false,
-                        items: [
-                            {
-                                id: 1,
-                                label: "10 party hats",
-                                purchased: true,
-                                highPriority: false,
-                            },
-                            {
-                                id: 2,
-                                label: "20 board games",
-                                purchased: true,
-                                highPriority: false,
-                            },
-                            {
-                                id: 3,
-                                label: "20 cups",
-                                purchased: false,
-                                highPriority: true,
-                            },
-                        ],
-                    };
-                },
-                methods: {
-                    saveItem() {
-                        this.items.push({
-                            id: this.items.length + 1,
-                            label: this.newItem,
-                            highPriority: this.newItemHighPriority,
-                        });
-                        this.newItem = "";
-                        this.newItemHighPriority;
-                    },
-                    doEdit(editing) {
-                        console.log(this);
-                        this.editing = editing;
-                        this.newItem = "";
-                        this.newItemHighPriority;
-                    },
-                    togglePurchased(item) {
-                        item.purchased = !item.purchased;
-                    },
-                },
-
-                computed: {
-                    characterCount() {
-                        return this.newItem.length;
-                    },
-                    revercedItems() {
-                        return [...this.items].reverse();
-                    },
-                },
-            }).mount("#shopping-list");
-        </script>
     </body>
 </html>
