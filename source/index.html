@@ -1,11 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Lesson First</title>
-    <script src="script.js"></script>
-</head>
-<body>
-<h1>Array<a href="">Link</a></h1>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Task with fetch</title>
+        <script src="script.js"></script>
+        <!-- <script src="fetch-wrapper.js"></script> -->
+    </head>
+    <body>
+        <style>
+            .post-wrap {
+                max-width: 300px;
+                padding: 16px;
+            }
+            .strikeout {
+                text-decoration: line-through;
+            }
+            .priority {
+                color: burlywood;
+            }
+            .form {
+                display: flex;
+                flex-direction: column;
+                max-width: 200px;
+                margin: 0 auto 16px;
+                padding: 20px;
+            }
+            .form-list {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 8px;
+                flex-direction: column;
+            }
+            .button {
+                background-color: black;
+                color: #fff;
+                font-size: 12px;
+                box-shadow: none;
+                padding: 6px 24px;
+                width: 100%;
+                max-width: 200px;
+                border: 0;
+            }
+            .show-post-button {
+                margin: 0 auto;
+                display: block;
+            }
+            h6 {
+                font-size: 14px;
+                margin-bottom: 8px;
+                margin-top: 0;
+                text-transform: capitalize;
+            }
+            p {
+                font-size: 12px;
+            }
+            li {
+                list-style: none;
+                margin-bottom: 16px;
+                max-width: 600px;
+            }
+            .list-wrap {
+                display: flex;
+                justify-content: space-between;
+            }
+            .btn-delete {
+                margin-left: 8px;
+            }
+            .btn-edit {
+                margin-left: auto;
+            }
+        </style>
+        <div class="">
+            <div class="post-wrap">
+                <form class="form" data-post-create>
+                    <label class="form-list" for=""
+                        >Title
+                        <input type="text" data-field-title required />
+                    </label>
+                    <label class="form-list" for=""
+                        >Body
+                        <textarea data-field-body required></textarea>
+                    </label>
+                    <button class="button" type="button" data-button-create>
+                        Add post
+                    </button>
+                </form>
+                <button
+                    class="button show-post-button"
+                    type="button"
+                    data-show-post
+                >
+                    Show Posts
+                </button>
+            </div>
+            <ul data-post-list></ul>
+        </div>
+    </body>
 </html>
